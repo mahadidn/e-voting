@@ -26,12 +26,17 @@ Router::add('GET', '/admin/logout', AdminController::class, 'logout', [MustLogin
 Router::add('GET', '/data/pemilih', AdminController::class, 'dataPemilih', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/kandidat', AdminController::class, 'dataKandidat', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/kandidat/tambah', AdminController::class, 'dataKandidatTambah', [MustLoginAdminMiddleware::class]);
+Router::add('POST', '/data/kandidat/tambah', AdminController::class, 'postDataKandidatTambah', [MustLoginAdminMiddleware::class]);
+Router::add('POST', '/data/pengguna/tambah', AdminController::class, 'postDataPenggunaTambah', [MustLoginAdminMiddleware::class]);
+Router::add('GET', '/data/kandidat/edit/([0-9]*)', AdminController::class, 'dataKandidatEdit', [MustLoginAdminMiddleware::class]);
+Router::add('GET', '/data/pengguna/hapus/([0-9]*)', AdminController::class, 'dataPenggunaHapus', [MustLoginAdminMiddleware::class]);
+Router::add('GET', '/data/pengguna/edit/([0-9]*)', AdminController::class, 'dataPenggunaEdit', [MustLoginAdminMiddleware::class]);
+Router::add('POST', '/data/pengguna/edit/([0-9]*)', AdminController::class, 'postDataPenggunaEdit', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/voting', AdminController::class, 'dataVoting', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/rekapitulasivoting', AdminController::class, 'dataRekapitulasiVoting', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/pengguna', AdminController::class, 'dataPengguna', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/admin/gantipassword', AdminController::class, 'gantiPassword', [MustLoginAdminMiddleware::class]);
 Router::add('GET', '/data/pengguna/tambah', AdminController::class, 'dataPenggunaTambah', [MustLoginAdminMiddleware::class]);
-
 
 // User Controller
 Router::add('GET', '/login/pemilih', UserController::class, 'login', []);

@@ -23,17 +23,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach ($model['pemilih'] as $key => $value) { ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $i ?></td>
+                                <td><?= $value['nama_lengkap'] ?></td>
+                                <td><?= $value['username'] ?></td>
+                                <td><?= $value['status_memilih'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a class="btn btn-danger btn-sm" href="">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

@@ -4,6 +4,7 @@ namespace Klp12\Evoting\Service;
 
 use Klp12\Evoting\Config\Database;
 use Klp12\Evoting\Model\Domain\Admin;
+use Klp12\Evoting\Model\Domain\Kandidat;
 use Klp12\Evoting\Model\LoginRequest;
 use Klp12\Evoting\Repository\AdminRepository;
 
@@ -67,6 +68,41 @@ class AdminService {
         if ($loginRequest->username == null || $loginRequest->password == null || trim($loginRequest->username) == "" || trim($loginRequest->password) == ""){
             throw new \Exception("Username atau password tidak boleh kosong!");
         }
+    }
+
+
+    // tampilkan data pengguna
+    public function tampilkanDataPengguna() {
+        $akun = $this->adminRepository->tampilkanDataPengguna();
+
+        return $akun;
+    }
+
+    // hapus data pengguna
+    public function hapusDataPengguna($id){
+        $this->adminRepository->hapusDataPengguna($id);
+    }
+
+    // edit pengguna
+    public function editPengguna($nama, $id, $username, $email, $password){
+       
+        $this->adminRepository->editPengguna($nama, $id, $username, $email, $password);
+        
+    }
+
+    // tambah kandidat
+    public function tambahKandidat(Kandidat $kandidat){
+        $this->adminRepository->tambahKandidat($kandidat);
+    }
+
+    // tampilkan kandidat
+    public function tampilkanKandidat(){
+        return $this->adminRepository->tampilkanKandidat();
+    }
+
+    // tampil satu kandidat
+    public function tampilSatuKandidat($id){
+        return $this->adminRepository->tampilkanSatuKandidat($id);
     }
 
 }

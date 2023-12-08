@@ -25,19 +25,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $i = 1; ?>
+                            <?php foreach ($model['kandidat'] as $key => $value) { ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $i ?></td>
+                                <td><?= $value['nama_lengkap'] ?></td>
+                                <td><img src="/assets/img/<?= $value['foto'] ?>" alt="foto kandidat" width="200px"></td>
+                                <td><?= $value['profil'] ?></td>
+                                <td><?= $value['visi_misi'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-success btn-sm mr-2" href="form-kandidat.php">Edit</a>
+                                        <a class="btn btn-success btn-sm mr-2" href="/data/kandidat/edit/<?= $value['id'] ?>">Edit</a>
                                         <a class="btn btn-danger btn-sm" href="">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
+                            <?php $i++; } ?>
                         </tbody>
                     </table>
                 </div>

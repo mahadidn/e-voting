@@ -7,8 +7,12 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Form Pengguna</h1>
+                <?php if(strstr($model['title'], 'Edit')){ ?>
+                    <h1 class="h3 mb-2 text-gray-800">Form Edit Pengguna</h1>
+                <?php }else { ?>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Form Pengguna</h1>
+                <?php } ?>
             </div>
 
             <!-- DataTales Example -->

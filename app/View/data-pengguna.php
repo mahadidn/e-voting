@@ -24,18 +24,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $i = 1; ?>
+                        <?php foreach ($model['pengguna'] as $key => $value) { ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $i ?></td>
+                                <td><?= $value['nama_lengkap'] ?></td>
+                                <td><?= $value['username'] ?></td>
+                                <td><?= $value['email'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-success btn-sm mr-2" href="form-pengguna.php">Edit</a>
-                                        <a class="btn btn-danger btn-sm" href="">Hapus</a>
+                                        <a class="btn btn-success btn-sm mr-2" href="/data/pengguna/edit/<?= $value['id'] ?>">Edit</a>
+                                        <a class="btn btn-danger btn-sm" href="/data/pengguna/hapus/<?= $value['id'] ?>">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
+                        <?php $i = $i + 1;  } ?>
                         </tbody>
                     </table>
                 </div>
