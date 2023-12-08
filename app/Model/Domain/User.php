@@ -10,6 +10,7 @@ class User {
     public ?string $nama_lengkap = null;
     public ?string $email = null;
     public ?string $password = null;
+    public string $status_memilih;
 
 }
 

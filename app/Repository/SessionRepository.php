@@ -87,7 +87,7 @@ class SessionRepository {
         $statementAdmin = $this->connection->prepare("SELECT id, username, email FROM admin WHERE username = ?");
         $statementAdmin->execute([$username]);
 
-        $statementUser = $this->connection->prepare("SELECT id, username, email, nama_lengkap FROM user WHERE username = ?");
+        $statementUser = $this->connection->prepare("SELECT id, username, email, nama_lengkap, status_memilih FROM user WHERE username = ?");
         $statementUser->execute([$username]);
 
         try {
@@ -106,6 +106,7 @@ class SessionRepository {
                 $user->email = $row['email'];
                 $user->nama_lengkap = $row['nama_lengkap'];
                 $user->usertype = "user";
+                $user->status_memilih = $row['status_memilih'];
 
                 return $user;
             }else {

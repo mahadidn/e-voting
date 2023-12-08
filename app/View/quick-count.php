@@ -8,33 +8,19 @@
             <h2 class="text-center">Quick Count</h2>
             <p class="text-center">Hasil Pemilihan Suara</p>
             <div class="row justify-content-center">
+                
+            <?php foreach ($model['kandidat'] as $key => $value) { ?>
                 <div class="col-md-4 col-sm-12 pb-3">
                     <div class="card p-3 bg-light">
-                        <img src="/assets/img/kandidat.jpg" class="card-img-top img-fluid" alt="Kandidat 1" />
+                        <img src="/assets/img/<?= $value['foto'] ?>" class="card-img-top img-fluid" alt="Kandidat 1" />
                         <div class="card-body">
-                            <h5 class="card-title text-center">Kandidat 1</h5>
-                            <p class="card-text text-center">35 VOTE</p>
+                            <h5 class="card-title text-center"><?= $value['nama_lengkap'] ?></h5>
+                            <p class="card-text text-center"><?= $value['jumlah_suara'] ?> VOTE</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 pb-3">
-                    <div class="card p-3 bg-light">
-                        <img src="/assets/img/kandidat.jpg" class="card-img-top img-fluid" alt="Kandidat 2" />
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Kandidat 2</h5>
-                            <p class="card-text text-center">20 VOTE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 pb-3">
-                    <div class="card p-3 bg-light">
-                        <img src="/assets/img/kandidat.jpg" class="card-img-top img-fluid" alt="Kandidat 3" />
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Kandidat 3</h5>
-                            <p class="card-text text-center">55 VOTE</p>
-                        </div>
-                    </div>
-                </div>
+            <?php } ?>
+
             </div>
         </div>
         <div class="container py-5">
@@ -50,11 +36,29 @@
         </div>
     </div>
 
+    <?php  
+
+        $dataFromPHP = $model['kandidat'];
+        $jsonData = json_encode($dataFromPHP);
+    
+    ?>
+
     <script src="/assets/js/apexcharts.js"></script>
     <script>
+
+        let dataFromPHP = <?php echo $jsonData?>
+
+        dataSuara = [];
+        dataKandidat = [];
+        
+        for (i = 0; i < dataFromPHP.length; i++){
+            dataSuara[i] = dataFromPHP[i][2];
+            dataKandidat[i] = dataFromPHP[i][0];
+        }
+        
         var options = {
             series: [{
-                data: [35, 20, 55],
+                data: dataSuara,
             }, ],
             chart: {
                 height: 350,
@@ -80,7 +84,7 @@
                 show: false,
             },
             xaxis: {
-                categories: ["Kandidat1", "Kandidat 2", "Kandidat 3"],
+                categories: dataKandidat,
                 labels: {
                     style: {
                         colors: ['#008FFB', '#00E396', '#FEB019'],

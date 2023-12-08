@@ -10,6 +10,36 @@
                 <h1 class="h3 mb-2 text-base" style="font-weight: 600">Data Rekapitulasi Voting</h1>
                 <p class="mb-4">Berikut merupakan rekapitulasi voting terkini</p>
             </div>
+
+            <?php
+            
+                $i = 0;
+                $nama = [];
+                $suara = [];
+                foreach ($model['kandidat'] as $key => $value) {
+                    
+                    $nama[$i] = $value['nama_lengkap'];
+                    $suara[$i] = $value['jumlah_suara'];
+                    
+                    $i++;
+                }
+                
+                // pemenang
+                $kategoriPemenang = max($suara);
+                $namaPemenang;
+                $jumlahSuara;
+                for ($j = 0; $j < count($suara); $j++){
+                    
+                    if ($suara[$j] == $kategoriPemenang){
+                        $namaPemenang = $nama[$j];
+                        $jumlahSuara = $suara[$j];
+                        break;
+                    }
+
+                }
+            
+            ?>
+
             <div class="card-body d-flex justify-content-between flex-wrap">
                 <div class="col-12 col-md-6">
                     <div id="chart"></div>
@@ -20,7 +50,7 @@
             </div>
             <div class="card-footer text-center">
                 <h2 class="text-gray-800">Hasil Voting</h2>
-                <h5>Kandidat 3 dengan perolehan suara sebanyak 55 Suara</h5>
+                <h5><?= $namaPemenang ?> dengan perolehan suara sebanyak <?= $jumlahSuara ?> Suara</h5>
             </div>
         </div>
     </div>

@@ -9,6 +9,13 @@
             <div class="card-header py-3">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-base" style="font-weight: 600">Ganti Password</h1>
+                <?php if(isset($model['berhasil'])){ ?>
+                        <div class="row">
+                            <div class="alert alert-success" role="alert">
+                                <?= $model['berhasil'] ?>
+                            </div>
+                        </div>
+                <?php } ?>
             </div>
 
             <!-- DataTales Example -->

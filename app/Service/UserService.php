@@ -81,5 +81,22 @@ class UserService {
         }
     }
 
+    // tambah suara kandidat
+    public function tambahSuara($username, $id_kandidat){
+        
+        $kandidat = $this->userRepository->tampilkanSatuKandidat($id_kandidat);
+        
+        $suara = (int)$kandidat['jumlah_suara'];
+        $suara = $suara + 1;
+        
+        $this->userRepository->tambahSuara($suara, $username, $id_kandidat);
+
+    }
+
+    // tampil semua kandidat
+    public function tampilKandidat(){
+        return $this->userRepository->tampilkanKandidat();
+    }
+
 }
 

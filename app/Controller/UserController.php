@@ -94,11 +94,25 @@ class UserController {
     // habis login
     public function halamanUser(): void {
         $user = $this->sessionService->current();
+        $row = $this->userService->tampilKandidat();
         View::render('vote', [
             'title' => 'Vote',
             'type' => $user->usertype,
             'username' => $user->username,
+            'kandidat' => $row
         ]);
+    }
+
+    // post Vote
+    public function postVote(): void {
+
+        var_dump($_POST['id']);
+
+        $user = $this->sessionService->current();
+
+        $this->userService->tambahSuara($user->username, $_POST['id']);
+
+        View::redirect('/');
     }
 
     // logout

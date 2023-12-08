@@ -158,15 +158,77 @@ class AdminController {
 
     }
 
+    public function postDataKandidatEdit($id){
+        try {
+
+            $fileName = $_FILES['upload_file']['name'];
+            $fileSize = $_FILES['upload_file']['size'];
+            $fileTmpName = $_FILES['upload_file']['tmp_name'];
+            $fileError = $_FILES['upload_file']['error'];
+    
+            if ($fileError === 4){
+                throw new \Exception("Pilih Gambar Terlebih Dahulu");
+            }
+    
+            $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+            $ekstensiGambar = explode(".", $fileName);
+            $ekstensiGambar = strtolower(end($ekstensiGambar));
+    
+            if (!in_array($ekstensiGambar, $ekstensiGambarValid)){
+                throw new \Exception("File yang di upload bukan gambar");
+            }
+    
+            if ($fileSize > 500000){
+                throw new \Exception('Ukuran Gambar Terlalu Besar!');
+            }
+    
+            $newImage = uniqid();
+            $newImage .= '.';
+            $newImage .= $ekstensiGambar;
+            $destination = __DIR__ . '/../../public/assets/img/' . $newImage;
+            
+            move_uploaded_file($fileTmpName, $destination);
+    
+            $kandidat = new Kandidat();
+            $kandidat->nama_kandidat = $_POST['nama'];
+            $kandidat->foto = $newImage;
+            $kandidat->profil = $_POST['profil'];
+            $kandidat->visi_misi = $_POST['visimisi'];
+
+            $this->adminService->editKandidat($kandidat, $id);
+
+            View::redirect('/data/kandidat');
+        }catch (\Exception $e){
+            View::render('form-kandidat', [
+                'title' => 'Edit Data Kandidat',
+                'error' => $e->getMessage()
+            ]);
+        }
+        
+    }
+
+    public function hapusKandidat($id): void {
+        $this->adminService->hapusKandidat($id);
+        View::redirect('/data/kandidat');
+    }
+
     public function dataVoting(): void {
+
+        $row = $this->adminService->tampilkanVoting();
+
         View::render('data-voting', [
-            'title' => 'Data Voting'
+            'title' => 'Data Voting',
+            'voting' => $row
         ]);
     }
 
     public function dataRekapitulasiVoting(): void {
+
+        $row = $this->adminService->tampilkanKandidat();
+
         View::render('data-rekapitulasi-voting', [
-            'title' => 'Rekapitulasi Voting'
+            'title' => 'Rekapitulasi Voting',
+            'kandidat' => $row,
         ]);
     }
 
@@ -218,10 +280,29 @@ class AdminController {
         View::redirect('/data/pengguna');
     }
 
+    public function resetPemilih(): void {
+        $this->adminService->resetPemilih();
+        View::redirect('/data/pemilih');
+    }
+
     public function gantiPassword(): void {
         View::render('ganti-password', [
             'title' => 'Ganti Password'
         ]);
+    }
+
+    public function postGantiPassword(): void {
+        $admin = $this->sessionService->current();
+
+        $password = $_POST['passBaru'];
+
+        $this->adminService->gantiPassword($password, $admin->id);
+        
+        View::render('ganti-password', [
+            'title' => 'Ganti Password',
+            'berhasil' => 'Password Berhasil Diubah'
+        ]);
+
     }
 
     public function logout(): void {

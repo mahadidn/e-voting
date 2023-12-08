@@ -24,7 +24,7 @@
                         
                         <!-- hanya tampil ketika sudah login, dan button login pemilih hilang -->
                         <?php if(isset($model['type'])){ ?>
-                            <button class="btn btn-outline-light rounded-pill"><?= $model['username'] ?> - Pemilih</button>
+                            <a href="/beranda/user" class="btn btn-outline-light rounded-pill"><?= $model['username'] ?> - Pemilih</a>
                         <?php } ?>
                     </li>
                     <li class="nav-item mb-2">

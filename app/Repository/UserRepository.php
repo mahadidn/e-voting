@@ -22,6 +22,34 @@ class UserRepository {
         return $user;
     }
 
+    // tambah suara
+    public function tambahSuara($suara, $username, $id){
+        $statement = $this->connection->prepare("update kandidat SET jumlah_suara = ? WHERE id = ?");
+        $statement->execute([$suara, $id]);
+        
+        $statementUser = $this->connection->prepare("update user SET status_memilih = 'sudah' WHERE username = ?");
+        $statementUser->execute([$username]);
+    }
+
+    // tampil semua kandidat
+    public function tampilkanKandidat(){
+        $statement = $this->connection->prepare("SELECT * FROM kandidat");
+        $statement->execute();
+
+        $row = $statement->fetchAll();
+        return $row;
+
+    }
+
+    // dapatin data kandidat
+    public function tampilkanSatuKandidat($id_kandidat){
+        $statement = $this->connection->prepare("SELECT * FROM kandidat WHERE id = ?");
+        $statement->execute([$id_kandidat]);
+
+        $row = $statement->fetch();
+        return $row;
+    }
+
 
     // helper
     public function findByUsername($username): User|null{

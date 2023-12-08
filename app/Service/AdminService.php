@@ -85,6 +85,8 @@ class AdminService {
 
     // edit pengguna
     public function editPengguna($nama, $id, $username, $email, $password){
+
+        $password = password_hash($password, PASSWORD_BCRYPT);
        
         $this->adminRepository->editPengguna($nama, $id, $username, $email, $password);
         
@@ -103,6 +105,34 @@ class AdminService {
     // tampil satu kandidat
     public function tampilSatuKandidat($id){
         return $this->adminRepository->tampilkanSatuKandidat($id);
+    }
+
+    // edit kandidat
+    public function editKandidat(Kandidat $kandidat, $id){
+        $this->adminRepository->editKandidat($kandidat, $id);
+    }
+
+    // hapus kandidat
+    public function hapusKandidat($id){
+        $this->adminRepository->hapusKandidat($id);
+    }
+
+    // tampilkan data voting
+    public function tampilkanVoting(){
+        return $this->adminRepository->dataVoting();
+    }
+
+    // reset pemilih
+    public function resetPemilih(){
+        $this->adminRepository->resetPemilih();
+    }
+
+    // ganti password admin
+    public function gantiPassword($password, $id){
+
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
+        return $this->adminRepository->gantiPassword($password, $id);
     }
 
 }

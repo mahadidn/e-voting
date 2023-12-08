@@ -19,36 +19,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($model['kandidat'] as $key => $value) { ?>
                         <tr>
-                            <td>1</td>
-                            <td><img src="/assets/img/kandidat.jpg" class="img-fluid p-md-3" alt="Kandidat 1"></td>
-                            <td class="text-left">John Doe adalah sosok yang berkomitmen tinggi untuk mewujudkan perubahan
-                                positif dalam lingkungan kampus. Dengan latar belakang akademis yang kuat dan pengalaman
-                                kepemimpinan yang luas, John Doe telah terlibat aktif dalam berbagai kegiatan kemahasiswaan
-                                yang melibatkan pengembangan potensi mahasiswa. Selain itu, sebagai sosok yang aktif di
-                                kegiatan ekstrakurikuler, John Doe telah memimpin berbagai proyek dalam lingkungan kampus.
+                            <td><?= $i ?></td>
+                            <td><img src="/assets/img/<?= $value['foto'] ?>" class="img-fluid p-md-3" width="200px" alt="Kandidat <?= $i ?>"></td>
+                            <td class="text-left">
+                                <?= $value['visi_misi'] ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><img src="/assets/img/kandidat.jpg"  class="img-fluid p-md-3" alt="Kandidat 2"></td>
-                            <td class="text-left">John Doe adalah sosok yang berkomitmen tinggi untuk mewujudkan perubahan
-                                positif dalam lingkungan kampus. Dengan latar belakang akademis yang kuat dan pengalaman
-                                kepemimpinan yang luas, John Doe telah terlibat aktif dalam berbagai kegiatan kemahasiswaan
-                                yang melibatkan pengembangan potensi mahasiswa. Selain itu, sebagai sosok yang aktif di
-                                kegiatan ekstrakurikuler, John Doe telah memimpin berbagai proyek dalam lingkungan kampus.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><img src="/assets/img/kandidat.jpg" class="img-fluid p-md-3" alt="Kandidat 3"></td>
-                            <td class="text-left">John Doe adalah sosok yang berkomitmen tinggi untuk mewujudkan perubahan
-                                positif dalam lingkungan kampus. Dengan latar belakang akademis yang kuat dan pengalaman
-                                kepemimpinan yang luas, John Doe telah terbabit aktif dalam berbagai kegiatan kemahasiswaan
-                                yang melibatkan pengembangan potensi mahasiswa. Selain itu, sebagai sosok yang aktif di
-                                kegiatan ekstrakurikuler, John Doe telah memimpin berbagai proyek dalam lingkungan kampus.
-                            </td>
-                        </tr>
+                    <?php $i++; } ?>
                     </tbody>
                 </table>
             </div>

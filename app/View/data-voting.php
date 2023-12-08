@@ -19,21 +19,18 @@
                                 <th>Nama Kandidat</th>
                                 <th>Foto</th>
                                 <th>Jumlah Suara</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $i = 1; ?>
+                        <?php foreach ($model['voting'] as $key => $value) { ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a class="btn btn-danger btn-sm" href="">Hapus</a>
-                                    </div>
-                                </td>
+                                <td><?= $i ?></td>
+                                <td><?= $value['nama_lengkap'] ?></td>
+                                <td><img src="/assets/img/<?= $value['foto'] ?>" alt="foto kandidat" width="200px"></td>
+                                <td><?= $value['jumlah_suara'] ?></td>
                             </tr>
+                        <?php $i++; } ?>
                         </tbody>
                     </table>
                 </div>

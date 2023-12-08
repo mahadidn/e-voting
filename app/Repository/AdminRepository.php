@@ -67,6 +67,43 @@ class AdminRepository {
         return $row;
     }
 
+    // edit kandidat
+    public function editKandidat(Kandidat $kandidat, $id) {
+        $statement = $this->connection->prepare("UPDATE kandidat SET nama_lengkap = ?, foto = ?, visi_misi = ?, profil = ? WHERE id = ?");
+        $statement->execute([$kandidat->nama_kandidat, $kandidat->foto, $kandidat->visi_misi, $kandidat->profil, $id]);
+    }
+    
+    // hapus kandidat
+    public function hapusKandidat($id){
+        $statement = $this->connection->prepare("DELETE FROM kandidat WHERE id = ?");
+        $statement->execute([$id]);
+    }
+
+
+    // data voting
+    public function dataVoting(){
+        $statement = $this->connection->prepare("SELECT nama_lengkap, foto, jumlah_suara FROM kandidat");
+        $statement->execute();
+
+        $row = $statement->fetchAll();
+        return $row;
+
+    }
+
+    // reset pemilih
+    public function resetPemilih(){
+        $statement = $this->connection->prepare("UPDATE user SET status_memilih = 'belum'");
+        $statement->execute();
+    }
+
+    public function gantiPassword($password, $id){
+        $statement = $this->connection->prepare("UPDATE admin SET password = ? WHERE id = ?");
+        $statement->execute([$password, $id]);
+
+        return $statement;
+    }
+
+
     // helper
     public function findByUsername($username): Admin|null {
         $statementAdmin = $this->connection->prepare("SELECT id, username, password, email FROM admin WHERE username = ?");

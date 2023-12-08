@@ -41,7 +41,7 @@
       <span>Data Kandidat</span></a>
   </li>
 
-  <?php if(strstr($model['title'], 'Voting')){
+  <?php if(strstr($model['title'], 'Data Voting')){
     $light = "active";
   }else {$light = "";} ?>
  

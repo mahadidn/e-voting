@@ -36,7 +36,7 @@
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a class="btn btn-success btn-sm mr-2" href="/data/kandidat/edit/<?= $value['id'] ?>">Edit</a>
-                                        <a class="btn btn-danger btn-sm" href="">Hapus</a>
+                                        <a class="btn btn-danger btn-sm" href="/data/kandidat/hapus/<?= $value['id'] ?>">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
