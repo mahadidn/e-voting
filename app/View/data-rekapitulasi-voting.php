@@ -20,6 +20,10 @@
                     
                     $nama[$i] = $value['nama_lengkap'];
                     $suara[$i] = $value['jumlah_suara'];
+
+                    if($suara[0] == $suara[1]){
+                        $hasil = "Perolehan suara seri";
+                    }
                     
                     $i++;
                 }
@@ -28,6 +32,10 @@
                 $kategoriPemenang = max($suara);
                 $namaPemenang;
                 $jumlahSuara;
+
+                // if($kategoriPemenang == ){
+                //     $hasil = "perolehan suara seri";
+                // }
                 for ($j = 0; $j < count($suara); $j++){
                     
                     if ($suara[$j] == $kategoriPemenang){
@@ -50,7 +58,11 @@
             </div>
             <div class="card-footer text-center">
                 <h2 class="text-gray-800">Hasil Voting</h2>
-                <h5><?= $namaPemenang ?> dengan perolehan suara sebanyak <?= $jumlahSuara ?> Suara</h5>
+                <?php if(!isset($hasil)){ ?>
+                    <h5><?= $namaPemenang ?> dengan perolehan suara sebanyak <?= $jumlahSuara ?> Suara</h5>
+                <?php }else {?>
+                    <h5><?= $hasil ?></h5>
+                <?php } ?>
             </div>
         </div>
     </div>

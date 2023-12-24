@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 09, 2023 at 03:36 AM
+-- Generation Time: Dec 24, 2023 at 04:43 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -61,10 +61,8 @@ CREATE TABLE `kandidat` (
 --
 
 INSERT INTO `kandidat` (`nama_lengkap`, `id`, `jumlah_suara`, `foto`, `visi_misi`, `profil`) VALUES
-('Mahadi', 5, 92, '65735daee21db.jpg', 'membangun negeri', 'Hallo nama saya mahadi'),
-('Sidu', 6, 80, '65735dcabf0c7.png', 'Membangun Pohon', 'App Sinar Mas'),
-('Robot', 7, 78, '65735f88de5e8.png', 'membangun robot', 'Robot'),
-('Gojo', 8, 2, '65737d74e79a6.png', 'Yowaimo', 'Gojo');
+('kandidat1', 10, 4, '657ba4dc80be8.jpeg', 'kandidat1', 'kandidat1'),
+('kandidat2', 11, 5, '657ba4ead804a.jpg', 'kandidat2', 'kandidat2');
 
 -- --------------------------------------------------------
 
@@ -76,7 +74,8 @@ CREATE TABLE `pemilih` (
   `nama_lengkap` varchar(300) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `status_memilih` enum('sudah','belum') DEFAULT 'belum',
-  `id_user` int(11) DEFAULT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,7 +97,7 @@ CREATE TABLE `session_admin` (
 INSERT INTO `session_admin` (`id`, `user_id`, `username_session`) VALUES
 (1, '6571c1c8cfde0', 'admin'),
 (1, '6572750dbe55e', 'admin'),
-(1, '65737dd652a4e', 'admin');
+(1, '6587f9fb1d8f3', 'admin');
 
 -- --------------------------------------------------------
 
@@ -117,9 +116,7 @@ CREATE TABLE `session_user` (
 --
 
 INSERT INTO `session_user` (`id`, `user_id`, `username_session`) VALUES
-(1, '6571c12a13866', 'mahadi_dn'),
-(1, '6571e747b9c8c', 'mahadi_dn'),
-(1, '6571f108c6c18', 'mahadi_dn');
+(4, '6587fce2a6930', 'user2');
 
 -- --------------------------------------------------------
 
@@ -141,9 +138,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `id`, `password`, `email`, `nama_lengkap`, `status_memilih`) VALUES
-('mahadi_dn', 1, '$2y$10$fIW20HrjvOO8gnCxK9MmHuwb0OFuHW1yozIWRozRQOTef7Tkizhvq', 'mahadidwinugraha@gmail.com', 'Mahadi Dwi Nugraha', 'belum'),
 ('user1', 3, '$2y$10$riB.rb/KDKIi2wVunoPpMObffa9kEjUE8335js2FDR1sr76elRC1e', 'user1@gmail.com', 'user1_1', 'sudah'),
-('user2', 4, '$2y$10$kc2ExwOG09vo4cBARM4FouULej1xGQhMiVQE.WoEIqKgi5TBqku/e', 'user2@gmail.com', 'user2', 'belum');
+('user2', 4, '$2y$10$kc2ExwOG09vo4cBARM4FouULej1xGQhMiVQE.WoEIqKgi5TBqku/e', 'user2@gmail.com', 'user2', 'sudah'),
+('pemilih1', 5, '$2y$10$ixS/TN88e4g22j28ceGIE.alsJV0HufbiLWhvSyKYMiANe54T7Wly', 'pemilih@gmail.com', 'pemilih1', 'belum');
 
 --
 -- Indexes for dumped tables
@@ -165,6 +162,7 @@ ALTER TABLE `kandidat`
 -- Indexes for table `pemilih`
 --
 ALTER TABLE `pemilih`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_idpemilih_user` (`id_user`);
 
 --
@@ -199,13 +197,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `pemilih`
+--
+ALTER TABLE `pemilih`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
