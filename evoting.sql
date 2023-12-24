@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 24, 2023 at 04:43 PM
+-- Generation Time: Dec 25, 2023 at 12:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -61,8 +61,8 @@ CREATE TABLE `kandidat` (
 --
 
 INSERT INTO `kandidat` (`nama_lengkap`, `id`, `jumlah_suara`, `foto`, `visi_misi`, `profil`) VALUES
-('kandidat1', 10, 4, '657ba4dc80be8.jpeg', 'kandidat1', 'kandidat1'),
-('kandidat2', 11, 5, '657ba4ead804a.jpg', 'kandidat2', 'kandidat2');
+('kandidat1', 12, 0, '6588624b3c45b.jpg', 'kandidat1', 'kandidat1'),
+('kandidat2', 13, 0, '658862fd54465.jpg', 'kandidat2\r\n', 'kandidat2');
 
 -- --------------------------------------------------------
 
@@ -96,8 +96,7 @@ CREATE TABLE `session_admin` (
 
 INSERT INTO `session_admin` (`id`, `user_id`, `username_session`) VALUES
 (1, '6571c1c8cfde0', 'admin'),
-(1, '6572750dbe55e', 'admin'),
-(1, '6587f9fb1d8f3', 'admin');
+(1, '6572750dbe55e', 'admin');
 
 -- --------------------------------------------------------
 
@@ -116,7 +115,7 @@ CREATE TABLE `session_user` (
 --
 
 INSERT INTO `session_user` (`id`, `user_id`, `username_session`) VALUES
-(4, '6587fce2a6930', 'user2');
+(5, '65880db7178df', 'pemilih1');
 
 -- --------------------------------------------------------
 
@@ -138,8 +137,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `id`, `password`, `email`, `nama_lengkap`, `status_memilih`) VALUES
-('user1', 3, '$2y$10$riB.rb/KDKIi2wVunoPpMObffa9kEjUE8335js2FDR1sr76elRC1e', 'user1@gmail.com', 'user1_1', 'sudah'),
-('user2', 4, '$2y$10$kc2ExwOG09vo4cBARM4FouULej1xGQhMiVQE.WoEIqKgi5TBqku/e', 'user2@gmail.com', 'user2', 'sudah'),
+('user1', 3, '$2y$10$riB.rb/KDKIi2wVunoPpMObffa9kEjUE8335js2FDR1sr76elRC1e', 'user1@gmail.com', 'user1_1', 'belum'),
+('user2', 4, '$2y$10$kc2ExwOG09vo4cBARM4FouULej1xGQhMiVQE.WoEIqKgi5TBqku/e', 'user2@gmail.com', 'user2', 'belum'),
 ('pemilih1', 5, '$2y$10$ixS/TN88e4g22j28ceGIE.alsJV0HufbiLWhvSyKYMiANe54T7Wly', 'pemilih@gmail.com', 'pemilih1', 'belum');
 
 --
@@ -197,7 +196,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pemilih`
