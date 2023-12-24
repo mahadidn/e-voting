@@ -110,9 +110,15 @@ class UserController {
 
         $user = $this->sessionService->current();
 
+        // cek dulu sebelum tambah suara
+        if($user->status_memilih == "sudah"){
+            View::redirect('/quick-count');      
+            exit();      
+        }
+
         $this->userService->tambahSuara($user->username, $_POST['id']);
 
-        View::redirect('/');
+        View::redirect('/quick-count');
     }
 
     // logout
