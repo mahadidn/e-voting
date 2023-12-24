@@ -22,7 +22,7 @@
 <h3>Cara Pertama (via php localhost):</h3>
 <ol>
     <li>
-        <p>Import database elearning.sql dan elearning_test.sql ke mysql </p>
+        <p>Import database evoting.sql ke mysql </p>
     </li>
     <li>
         <p>Jika sudah berada di direktori, ketik perintah composer update diterminal</p>
@@ -37,7 +37,7 @@
         <p>Masukkan perintah php -S localhost:8080 diterminal (jika portnya bentrok ganti ke port lain misalnya 8081)</p>
     </li>
     <li>
-        <p>Buka browser dan ketik localhost:8081</p>
+        <p>Buka browser dan ketik localhost:8080</p>
     </li>
 </ol>
 
