@@ -24,7 +24,7 @@ class HomeController {
 
     public function index(): void {
         $user = $this->sessionService->current();
-        if ($user->usertype == null){
+        if (!isset($user->usertype)){
             
             View::render('index', [
                 'title' => 'login'
